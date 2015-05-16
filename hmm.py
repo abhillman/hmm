@@ -18,6 +18,8 @@ class HMModel(object):
             hmm = HMModel(transition_probabilities=transition_probabilities,
                           emission_probabilities=emission_probabilities,
                           start_probabilities=start_probabilities)
+
+        Note: in general, probabilities should be defined as floats to avoid integer arithmetic
         """
         self.transition_probabilities = transition_probabilities
         self.emission_probabilities = emission_probabilities
@@ -50,7 +52,8 @@ class HMModel(object):
         
         return summation * self.emission_probabilities[state][symbol]
 
-def main():
+
+def normal_coins():
     transition_probabilities = {'Coin 1': {'Coin 1': 0.5, 'Coin 2': 0.5}, 'Coin 2': {'Coin 1': 0.5, 'Coin 2': 0.5}}
     emission_probabilities = {'Coin 1': {'Heads': 0.5, 'Tails': 0.5}, 'Coin 2': {'Heads': 0.5, 'Tails': 0.5}}
     start_probabilities = {'Coin 1': 0.5, 'Coin 2': 0.5}
@@ -58,8 +61,55 @@ def main():
                   emission_probabilities=emission_probabilities,
                   start_probabilities=start_probabilities)
     sequence = ['Heads', 'Tails', 'Heads']
+    print "Two coins -- equal transition and emission probabilities"
     print "Sequence: %s" % sequence
     print "Probability: %s" % hmm.get_probability_forwards(sequence)
 
+
+def biased_coins():
+    transition_probabilities = {'Coin 1': {'Coin 1': 0.5, 'Coin 2': 0.5}, 'Coin 2': {'Coin 1': 0.5, 'Coin 2': 0.5}}
+    emission_probabilities = {'Coin 1': {'Heads': 1., 'Tails': 0.}, 'Coin 2': {'Heads': 0., 'Tails': 1.}}
+    start_probabilities = {'Coin 1': 0.5, 'Coin 2': 0.5}
+    hmm = HMModel(transition_probabilities=transition_probabilities,
+                  emission_probabilities=emission_probabilities,
+                  start_probabilities=start_probabilities)
+    sequence = ['Heads', 'Tails', 'Heads']
+    print "Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=0 heads p=1 tails)"
+    print "Sequence: %s" % sequence
+    print "Probability: %s" % hmm.get_probability_forwards(sequence)
+
+
+def biased_coins2():
+    transition_probabilities = {'Coin 1': {'Coin 1': 0.5, 'Coin 2': 0.5}, 'Coin 2': {'Coin 1': 0.5, 'Coin 2': 0.5}}
+    emission_probabilities = {'Coin 1': {'Heads': 1., 'Tails': 0.}, 'Coin 2': {'Heads': 1., 'Tails': 0.}}
+    start_probabilities = {'Coin 1': 0.5, 'Coin 2': 0.5}
+    hmm = HMModel(transition_probabilities=transition_probabilities,
+                  emission_probabilities=emission_probabilities,
+                  start_probabilities=start_probabilities)
+    sequence = ['Heads', 'Tails', 'Heads']
+    print "Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=1 heads p=1 tails)"
+    print "Sequence: %s" % sequence
+    print "Probability: %s" % hmm.get_probability_forwards(sequence)
+
+
+def biased_coins3():
+    transition_probabilities = {'Coin 1': {'Coin 1': 0.5, 'Coin 2': 0.5}, 'Coin 2': {'Coin 1': 0.5, 'Coin 2': 0.5}}
+    emission_probabilities = {'Coin 1': {'Heads': 1., 'Tails': 0.}, 'Coin 2': {'Heads': 1., 'Tails': 0.}}
+    start_probabilities = {'Coin 1': 0.5, 'Coin 2': 0.5}
+    hmm = HMModel(transition_probabilities=transition_probabilities,
+                  emission_probabilities=emission_probabilities,
+                  start_probabilities=start_probabilities)
+    sequence = ['Heads', 'Heads', 'Heads']
+    print "Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=1 heads p=0 tails)"
+    print "Sequence: %s" % sequence
+    print "Probability: %s" % hmm.get_probability_forwards(sequence)
+
+
 if __name__ == '__main__':
-    main()
+    normal_coins()
+    print ""
+    biased_coins()
+    print ""
+    biased_coins2()
+    print ""
+    biased_coins3()
