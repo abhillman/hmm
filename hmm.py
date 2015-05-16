@@ -87,7 +87,7 @@ def biased_coins2():
                   emission_probabilities=emission_probabilities,
                   start_probabilities=start_probabilities)
     sequence = ['Heads', 'Tails', 'Heads']
-    print "Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=1 heads p=1 tails)"
+    print "Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=0 heads p=1 tails)"
     print "Sequence: %s" % sequence
     print "Probability: %s" % hmm.get_probability_forwards(sequence)
 

@@ -30,10 +30,10 @@ Run ```python hmm.py``` for a simple test
     Sequence: ['Heads', 'Tails', 'Heads']
     Probability: 0.125
     
-    Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=1 heads p=1 tails)
+    Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=1 heads p=0 tails)
     Sequence: ['Heads', 'Tails', 'Heads']
     Probability: 0.0
     
-    Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=1 heads p=1 tails)
+    Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=1 heads p=0 tails)
     Sequence: ['Heads', 'Heads', 'Heads']
     Probability: 1.0
