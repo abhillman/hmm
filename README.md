@@ -39,7 +39,11 @@ Run ```python hmm.py``` for a simple test
     Probability: 1.0
 
 ## Conformance Testing
-There are some great libraries for HMMs out there. Probably one of the most established (from what we can tell) is GHMM. For conformance testing -- that is, to make sure we are getting the right kinds of results -- we tested against GHMM. Here are some examples of GHMM:
+There are some great libraries for HMMs out there. Probably one of the most established (from what we can tell) is GHMM. For conformance testing -- that is, to make sure we are getting the right kinds of results -- we tested against GHMM.
+
+To perform conformance testing, run ```python conformance_testing.py``` and make sure that ghmm is installed (see ```Installing-GHMM.md``` for some instructions for Mac OS X).  
+
+Here are some examples of GHMM:
 
     from ghmm import Alphabet, EmissionSequence, DiscreteDistribution, HMMFromMatrices
     
