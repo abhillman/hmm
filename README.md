@@ -37,3 +37,24 @@ Run ```python hmm.py``` for a simple test
     Two coins -- equal transition, but biased emission probabilities (p=1 heads p=0 tails / p=1 heads p=0 tails)
     Sequence: ['Heads', 'Heads', 'Heads']
     Probability: 1.0
+
+## Conformance Testing
+There are some great libraries for HMMs out there. Probably one of the most established (from what we can tell) is GHMM. For conformance testing -- that is, to make sure we are getting the right kinds of results -- we tested against GHMM. Here are some examples of GHMM:
+
+    from ghmm import Alphabet, EmissionSequence, DiscreteDistribution, HMMFromMatrices
+    
+    sigma = Alphabet(['Heads', 'Tails'])
+    A = [[0.5, 0.5], [0.5, 0.5]]    # transition probabilities
+    B = [[0.5, 0.5], [0.5, 0.5]]    # emission probabilities
+    pi = [0.5, 0.5]                 # initial state probabilities
+    hmm = HMMFromMatrices(sigma, DiscreteDistribution(sigma), A, B, pi)
+    sequence = EmissionSequence(sigma, ['Heads', 'Tails', 'Heads'])
+    forward = hmm.forward(sequence)
+
+When look at ```forward```:
+
+    >>> print forward
+    ([[0.5, 0.5], [0.5, 0.5], [0.5, 0.5]], [0.5, 0.5, 0.5])     # (forward-variables, scaling-vector)
+    >>> forward_variables, scaling_vector = forward
+    >>> print reduce(lambda x,y: x*y, scaling_vector)
+    0.125                                                       # Same as above in the first test
