@@ -1,5 +1,5 @@
 # Installing GHMM
-Installing GHMM on Mac OS 10.10 is generally straightforward, but as far as we know, you must install GHMM itself from source.
+Installing GHMM on Mac OS 10.10 is generally straightforward, but you must install GHMM from source.
 
 ## Steps
 * Make sure that you have XCode and the XCode command line tools installed
